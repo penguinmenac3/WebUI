@@ -33,7 +33,7 @@ export class Module<T extends HTMLElement> {
         this.htmlElement.style.display = this.displayStyle
     }
 
-    public update(_: KWARGS) {}
+    public update(_: KWARGS, changedPage: boolean) {}
 
     public select() {
         this.setClass("selected")

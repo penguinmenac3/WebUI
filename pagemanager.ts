@@ -43,7 +43,8 @@ export class PageManager {
             kwargs[key] = val
         }
 
-        if (this.currentPage != page) {
+        let changedPage = this.currentPage != page
+        if (changedPage) {
             console.log("Hide page: " + this.currentPage)
             this.pages[this.currentPage]?.hide()
             this.currentPage = page
@@ -52,7 +53,7 @@ export class PageManager {
         }
         console.log("Calling page.update with: " + JSON.stringify(kwargs))
 
-        this.pages[this.currentPage]?.update(kwargs)
+        this.pages[this.currentPage]?.update(kwargs, changedPage)
     }
 
     public static open(page: string, kwargs: KWARGS) {
