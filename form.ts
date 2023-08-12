@@ -89,7 +89,7 @@ export class FormCheckbox extends Module<HTMLDivElement> {
         this.add(label)
     }
 
-    public onChange(state: boolean) {
+    public onChange(_state: boolean) {
         console.log("Checkbox::onChange: Not implemented! Must be implemented by subclass.")
     }
 }
