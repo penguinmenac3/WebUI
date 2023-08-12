@@ -6,7 +6,7 @@ export interface KWARGS {
 export class Module<T extends HTMLElement> {
     public parent: Module<HTMLElement> | null = null
     public htmlElement: T
-    private displayStyle: string = "None"
+    private displayStyle: string = "none"
 
     protected constructor(element: string, text: string = "", cssClass: string = "") {
         this.htmlElement = document.createElement(element) as T
@@ -26,14 +26,18 @@ export class Module<T extends HTMLElement> {
         module.parent = null
     }
 
+    public isVisible(): boolean {
+        return this.htmlElement.style.display.toLowerCase() != "none"
+    }
+
     public hide() {
-        if (this.htmlElement.style.display == "None") return
+        if (!this.isVisible()) return
         this.displayStyle = this.htmlElement.style.display
         this.htmlElement.style.display = "None"
     }
 
     public show() {
-        if (this.displayStyle == "None") return
+        if (this.displayStyle.toLowerCase() == "none") return
         this.htmlElement.style.display = this.displayStyle
     }
 
