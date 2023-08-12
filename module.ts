@@ -8,8 +8,12 @@ export class Module<T extends HTMLElement> {
     public htmlElement: T
     private displayStyle: string = "None"
 
-    protected constructor(element: string) {
+    protected constructor(element: string, text: string = "", cssClass: string = "") {
         this.htmlElement = document.createElement(element) as T
+        this.htmlElement.innerHTML = text
+        if (cssClass != "") {
+            this.setClass(cssClass)
+        }
     }
     
     public add(module: Module<HTMLElement>): void {
