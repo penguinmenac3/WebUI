@@ -1,6 +1,6 @@
 // Implementation after: https://phrase.com/blog/posts/a-human-friendly-way-to-display-dates-in-typescript-javascript/
 
-import { STRINGS } from "../language/default";
+import { STRINGS } from "../../language/default";
 
 /**
  * Past this number of days we'll no longer display the 

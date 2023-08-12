@@ -1,5 +1,17 @@
-import { Button } from "./button";
 import { Module } from "./module";
+
+
+export class Button extends Module<HTMLLinkElement> {
+    constructor(text: string, cssClass: string = "") {
+        super("a", text, cssClass)
+        this.htmlElement.onclick = () => {this.onClick()}
+    }
+
+    public onClick() {
+        console.log("Buttom::onClick: Not implemented! Must be implemented by subclass.")
+    }
+}
+
 
 export class Form extends Module<HTMLDivElement> {
     constructor(...modules: Module<HTMLElement>[]) {
