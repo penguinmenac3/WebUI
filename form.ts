@@ -50,6 +50,9 @@ export class FormInput extends Module<HTMLInputElement> {
         this.htmlElement.oninput = () => {
             this.onChange(this.htmlElement.value)
         }
+        this.htmlElement.onchange = () => {
+            this.onChangeDone(this.htmlElement.value)
+        }
     }
 
     public value(setval: string | undefined = undefined): string {
@@ -59,7 +62,11 @@ export class FormInput extends Module<HTMLInputElement> {
         return this.htmlElement.value
     }
 
-    public onChange(_: string) {
+    public onChange(_value: string) {
+        //console.log(value)
+    }
+
+    public onChangeDone(_value: string) {
         //console.log(value)
     }
 }
