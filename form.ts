@@ -4,7 +4,10 @@ import { Module } from "./module";
 export class Button extends Module<HTMLLinkElement> {
     constructor(text: string, cssClass: string = "") {
         super("a", text, cssClass)
-        this.htmlElement.onclick = () => {this.onClick()}
+        this.htmlElement.onclick = (e: Event) => {
+            e.stopPropagation()
+            this.onClick()
+        }
     }
 
     public onClick() {
