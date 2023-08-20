@@ -12,18 +12,20 @@ export class PageManager {
         private defaultPage: string,
         private pages: Pages,
     ) {
-        if (location.hash.slice(1) == "") {
-            location.hash = "#" + defaultPage;
-        }
-        window.onhashchange = (_: HashChangeEvent) => {
-            this.onOpen()
-        }
         for (const page in pages) {
             document.getElementById("app")?.appendChild(pages[page].htmlElement)
             pages[page].hide()
         }
-        
-        this.onOpen()
+        window.onhashchange = (_: HashChangeEvent) => {
+            this.onOpen()
+        }
+        if (location.hash.slice(1) == "") {
+            // Change hash to default page but do not call onOpen,
+            // since that is done automatically when we change hash
+            location.hash = "#" + defaultPage;
+        } else {
+            this.onOpen()
+        }
     }
 
     private onOpen() {
