@@ -74,6 +74,68 @@ export class FormInput extends Module<HTMLInputElement> {
     }
 }
 
+export class FormRadioButton extends Module<HTMLDivElement> {
+    private radioButton: Module<HTMLInputElement>
+    constructor(name: string, text: string, cssClass: string = "") {
+        super("div")
+        this.radioButton = new Module<HTMLInputElement>("input")
+        this.radioButton.htmlElement.name = name
+        this.radioButton.htmlElement.type = "radio"
+        if (cssClass != "") {
+            this.setClass(cssClass)
+        }
+        this.radioButton.htmlElement.onchange = () => {
+            this.onChange(this.radioButton.htmlElement.checked)
+        }
+        this.add(this.radioButton)
+        let label = new Module<HTMLLabelElement>("label")
+        label.htmlElement.innerHTML = text
+        this.add(label)
+    }
+
+    public onChange(_state: boolean) {
+        console.log("RadioButton::onChange: Not implemented! Must be impleemnted by subclass.")
+    }
+
+    public value (setval: boolean | undefined = undefined): boolean {
+        if (setval !== undefined) {
+            this.radioButton.htmlElement.checked = setval
+        }
+        return this.radioButton.htmlElement.checked
+    }
+}
+
+export class FormRadioButtonGroup extends Module<HTMLDivElement> {
+    private selectedIndex: number = 0
+    private radioButtons: FormRadioButton[] = []
+    constructor(groupName: string, labels: string[], cssClass: string = "") {
+        super("div", "", cssClass)
+        for (let i = 0; i < labels.length; i++) {
+            let radioButton = new FormRadioButton(groupName, labels[i],  "")
+            radioButton.onChange = (state: boolean) => {
+                if (state){
+                    this.selectedIndex = i
+                    this.onChange(i)
+                }
+            }
+            this.add(radioButton)
+            this.radioButtons.push(radioButton)
+        }
+    }
+
+    public onChange(_selectedIndex: number) {
+        console.log("RadioButtonGroup::onChange: Not implemented! Must be impleemnted by subclass.")
+    }
+
+    public value (setval: number | undefined = undefined): number {
+        if (setval !== undefined) {
+            this.radioButtons[setval].value(true)
+            this.selectedIndex = setval
+        }
+        return this.selectedIndex
+    }
+}
+
 export class FormLabel extends Module<HTMLLabelElement> {
     constructor(text: string, cssClass: string = "") {
         super("label", text, cssClass)
