@@ -19,9 +19,11 @@ export class Popup extends Module<HTMLDivElement> {
     }
 
     public dispose() {
+        this.onExit()
         document.getElementById("global")?.removeChild(this.container.htmlElement)
     }
 
+    public onExit() {}
     public update() {}
 }
 
