@@ -81,19 +81,21 @@ export class FormLabel extends Module<HTMLLabelElement> {
 }
 
 export class FormCheckbox extends Module<HTMLDivElement> {
+    private checkbox: Module<HTMLInputElement>
+
     constructor(name: string, text: string, cssClass: string = "", initialValue: boolean = false) {
         super("div")
-        let checkbox = new Module<HTMLInputElement>("input")
-        checkbox.htmlElement.name = name
-        checkbox.htmlElement.type = "checkbox"
-        checkbox.htmlElement.checked = initialValue
+        this.checkbox = new Module<HTMLInputElement>("input")
+        this.checkbox.htmlElement.name = name
+        this.checkbox.htmlElement.type = "checkbox"
+        this.checkbox.htmlElement.checked = initialValue
         if (cssClass != "") {
             this.setClass(cssClass)
         }
-        checkbox.htmlElement.onchange = () => {
-            this.onChange(checkbox.htmlElement.checked)
+        this.checkbox.htmlElement.onchange = () => {
+            this.onChange(this.checkbox.htmlElement.checked)
         }
-        this.add(checkbox)
+        this.add(this.checkbox)
         let label = new Module<HTMLLabelElement>("label")
         label.htmlElement.innerHTML = text
         this.add(label)
@@ -101,6 +103,13 @@ export class FormCheckbox extends Module<HTMLDivElement> {
 
     public onChange(_state: boolean) {
         console.log("Checkbox::onChange: Not implemented! Must be implemented by subclass.")
+    }
+
+    public value(setval: boolean | undefined = undefined): boolean {
+        if (setval !== undefined) {
+            this.checkbox.htmlElement.checked = setval
+        }
+        return this.checkbox.htmlElement.checked
     }
 }
 
