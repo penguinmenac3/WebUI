@@ -52,15 +52,19 @@ export class Module<T extends HTMLElement> {
     }
 
     public setClass(className: string) {
-        if (!this.htmlElement.classList.contains(className)) {
+        if (!this.hasClass(className)) {
             this.htmlElement.classList.add(className)
         }
     }
 
     public unsetClass(className: string) {
-        if (!this.htmlElement.classList.contains(className)) {
+        if (this.hasClass(className)) {
             this.htmlElement.classList.remove(className)
         }
+    }
+    
+    public hasClass(className: string) {
+        return this.htmlElement.classList.contains(className)
     }
 
     // To duplicate the object use structuredClone(module):
