@@ -1,5 +1,5 @@
 import { Button } from "./form";
-import { xmark } from "./icons/icons";
+import { iconXmark } from "./icons/icons";
 import { Module } from "./module";
 
 
@@ -69,7 +69,7 @@ export class ExitablePopup extends Popup {
         exitButtonClass: string = ""
     ) {
         super(innerClass, containerClass)
-        let exitButton = new Button(xmark, exitButtonClass)
+        let exitButton = new Button(iconXmark, exitButtonClass)
         exitButton.onClick = this.dispose.bind(this)
         this.add(exitButton)
     }
