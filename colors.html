@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="colors.css">
+        <style>
+            :root {
+                background-color: black;
+            }
+            .highlight {
+                margin: 1em;
+                padding: 1em;
+                border-radius: var(--radius);
+                color: var(--color-brand-c);
+                fill: var(--color-brand-c);
+                background-color: var(--color-brand);
+            }
+            .normal {
+                margin: 1em;
+                margin-bottom: 20em;
+                padding: 2em;
+                padding-bottom: 4em;
+                border-radius: var(--radius);
+                color: var(--color-base-c);
+                fill: var(--color-base-c);
+                background-color: var(--color-base);
+            }
+            .inverted {
+                margin: 1em;
+                margin-bottom: 5em;
+                padding: 2em;
+                padding-bottom: 4em;
+                border-radius: var(--radius);
+                color: var(--color-base);
+                fill: var(--color-base);
+                background-color: var(--color-base-c);
+            }
+
+            .brand {
+                color: var(--color-brand);
+            }
+            .brand:hover {
+                color: var(--color-brand-hover);
+            }
+            
+            .accent {
+                color: var(--color-accent);
+            }
+            .accent:hover {
+                color: var(--color-accent-hover);
+            }
+            
+            .good {
+                color: var(--color-good);
+            }
+            .good:hover {
+                color: var(--color-good-hover);
+            }
+            
+            .bad {
+                color: var(--color-bad);
+            }
+            .bad:hover {
+                color: var(--color-bad-hover);
+            }
+
+            .button {
+                display: inline-flex;
+                width: 8em;
+                height: 3em;
+                align-items: center;
+                justify-content: center;
+                margin: 0.1em;
+                border-radius: var(--radius);
+            }
+            .brand-btn {
+                background-color: var(--color-brand);
+                color: var(--color-brand-c);
+            }
+            .brand-btn:hover {
+                background-color: var(--color-brand-hover);
+            }
+            
+            .accent-btn {
+                background-color: var(--color-accent);
+                color: var(--color-brand-c);
+            }
+            .accent-btn:hover {
+                background-color: var(--color-accent-hover);
+            }
+            
+            .good-btn {
+                background-color: var(--color-good);
+                color: var(--color-good-c);
+            }
+            .good-btn:hover {
+                background-color: var(--color-good-hover);
+            }
+            
+            .bad-btn {
+                background-color: var(--color-bad);
+                color: var(--color-bad-c);
+            }
+            .bad-btn:hover {
+                background-color: var(--color-bad-hover);
+            }
+        </style>
+    </head>
+    <body>        
+        <div class="normal">
+            <h1 style="color: var(--color-brand)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            
+            <h1 style="color: var(--color-accent)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            
+            <h1 style="color: var(--color-bad)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            
+            <h1 style="color: var(--color-good)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            
+            <div class="highlight">
+                <h1 style="color: var(--color-accent)">Title</h1>
+                <p style="color: var(--color-brand-c)">Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <a class="button brand-btn">Brand</a>
+                <a class="button accent-btn">Accent</a>
+                <a class="button good-btn">Good</a>
+                <a class="button bad-btn">Bad</a>
+            </div>
+        </div>
+        <div class="inverted">
+            <h1 style="color: var(--color-brand)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            
+            <h1 style="color: var(--color-accent)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+            <h1 style="color: var(--color-bad)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+            <h1 style="color: var(--color-good)">Title</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+            <div class="highlight">
+                <h1 style="color: var(--color-accent)">Title</h1>
+                <p style="color: var(--color-brand-c)">Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+
+            <div>
+                <a class="button brand-btn">Brand</a>
+                <a class="button accent-btn">Accent</a>
+                <a class="button good-btn">Good</a>
+                <a class="button bad-btn">Bad</a>
+            </div>
+        </div>
+    </body>
+</html>
