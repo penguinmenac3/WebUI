@@ -7,6 +7,8 @@
   --color-base-c-hover: #d3d3d3;
   --color-base: #201E1E;
   --color-base-hover: #302E2E;
+  --color-base-font: #ffffff;
+  --color-base-font-hover: #d3d3d3;
   --color-base-transparent: #333333BB;
   --color-base-transparent-2: #55555555;
   /* Brand (combines with all font colors and brand-c) */
@@ -54,6 +56,8 @@
     --color-base-c-hover: #302E2E;
     --color-base: #ffffff;
     --color-base-hover: #d3d3d3;
+    --color-base-font: #201E1E;
+    --color-base-font-hover: #302E2E;
     --color-base-transparent: #ffffffBB;
     --color-base-transparent-2: #55555555;
     color: var(--color-base-c);
