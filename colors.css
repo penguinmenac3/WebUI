@@ -1,28 +1,43 @@
 :root {
   color-scheme: light dark;
+  /* DARK Color Scheme */
+  /* Base (combines with all colors) */
   --color-base-c: #ffffff;
   --color-base-c-hover: #d3d3d3;
   --color-base: #333333;
   --color-base-hover: #444444;
   --color-base-transparent: #333333BB;
   --color-base-transparent-2: #55555555;
+  /* Brand (combines with all font colors and brand-c) */
   --color-brand-c: #ffffff;
-  --color-brand: #162850;
-  --color-brand-selected: #4a5e85;
-  --color-brand-hover: #2d4477;
+  --color-brand: #162F68;
+  --color-brand-selected: #274280;
+  --color-brand-hover: #071C4C;
+  --color-brand-font: #6278AA;
+  --color-brand-font-hover: #3F5891;
+  /* Accent */
   --color-accent-c: #ffffff;
-  --color-accent: gold;
-  --color-accent-selected: yellow;
-  --color-accent-hover: yellow;
+  --color-accent: #D9AB4F;
+  --color-accent-selected: #FED686;
+  --color-accent-hover: #BF8E2A;
+  --color-accent-font: #D9AB4F;
+  --color-accent-font-hover: #BF8E2A;
+  /* Bad */
   --color-bad-c: #ffffff;
-  --color-bad: #862626;
-  --color-bad-selected: #ff3333;
-  --color-bad-hover: #ff3333;
+  --color-bad: #A52556;
+  --color-bad-selected: #BB4573;
+  --color-bad-hover: #86113E;
+  --color-bad-font: #BB4573;
+  --color-bad-font-hover: #A52556;
+  /* Good */
   --color-good-c: #ffffff;
-  --color-good: green;
-  --color-good-selected: lime;
-  --color-good-hover: lime;    
-  --debug: #e100ff;
+  --color-good: #6FAD26;
+  --color-good-selected: #8BC548;
+  --color-good-hover: #548D11;    
+  --color-good-font: #8BC548;
+  --color-good-font-hover: #6FAD26;
+  /* Other */
+  --color-debug: #e100ff;
   --radius: 0.3em;
   --radius-large: 0.5em;
   --radius-round: 9999em;
@@ -32,8 +47,9 @@
 }
 
 @media (prefers-color-scheme: light) {
-  :root {  
-    --color-base-c: #333333;
+  :root {
+    /* LIGHT Color Scheme */
+    --color-base-c: #201B1B;
     --color-base-c-hover: #444444;
     --color-base: #ffffff;
     --color-base-hover: #d3d3d3;

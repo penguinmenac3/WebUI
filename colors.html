@@ -35,31 +35,31 @@
             }
 
             .brand {
-                color: var(--color-brand);
+                color: var(--color-brand-font);
             }
             .brand:hover {
-                color: var(--color-brand-hover);
+                color: var(--color-brand-font-hover);
             }
             
             .accent {
-                color: var(--color-accent);
+                color: var(--color-accent-font);
             }
             .accent:hover {
-                color: var(--color-accent-hover);
+                color: var(--color-accent-font-hover);
             }
             
             .good {
-                color: var(--color-good);
+                color: var(--color-good-font);
             }
             .good:hover {
-                color: var(--color-good-hover);
+                color: var(--color-good-font-hover);
             }
             
             .bad {
-                color: var(--color-bad);
+                color: var(--color-bad-font);
             }
             .bad:hover {
-                color: var(--color-bad-hover);
+                color: var(--color-bad-font-hover);
             }
 
             .button {
@@ -78,6 +78,10 @@
             .brand-btn:hover {
                 background-color: var(--color-brand-hover);
             }
+            .brand-btn-selected {
+                background-color: var(--color-brand-selected);
+                color: var(--color-bad-c);
+            }
             
             .accent-btn {
                 background-color: var(--color-accent);
@@ -85,6 +89,10 @@
             }
             .accent-btn:hover {
                 background-color: var(--color-accent-hover);
+            }
+            .accent-btn-selected {
+                background-color: var(--color-accent-selected);
+                color: var(--color-bad-c);
             }
             
             .good-btn {
@@ -94,6 +102,10 @@
             .good-btn:hover {
                 background-color: var(--color-good-hover);
             }
+            .good-btn-selected {
+                background-color: var(--color-good-selected);
+                color: var(--color-bad-c);
+            }
             
             .bad-btn {
                 background-color: var(--color-bad);
@@ -102,24 +114,28 @@
             .bad-btn:hover {
                 background-color: var(--color-bad-hover);
             }
+            .bad-btn-selected {
+                background-color: var(--color-bad-selected);
+                color: var(--color-bad-c);
+            }
         </style>
     </head>
     <body>        
         <div class="normal">
-            <h1 style="color: var(--color-brand)">Title</h1>
+            <h1 style="color: var(--color-brand-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             
-            <h1 style="color: var(--color-accent)">Title</h1>
+            <h1 style="color: var(--color-accent-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             
-            <h1 style="color: var(--color-bad)">Title</h1>
+            <h1 style="color: var(--color-bad-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             
-            <h1 style="color: var(--color-good)">Title</h1>
+            <h1 style="color: var(--color-good-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             
             <div class="highlight">
-                <h1 style="color: var(--color-accent)">Title</h1>
+                <h1 style="color: var(--color-accent-font)">Title</h1>
                 <p style="color: var(--color-brand-c)">Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
 
@@ -128,23 +144,30 @@
                 <a class="button accent-btn">Accent</a>
                 <a class="button good-btn">Good</a>
                 <a class="button bad-btn">Bad</a>
+            </div>
+
+            <div>
+                <a class="button brand-btn-selected">Brand</a>
+                <a class="button accent-btn-selected">Accent</a>
+                <a class="button good-btn-selected">Good</a>
+                <a class="button bad-btn-selected">Bad</a>
             </div>
         </div>
         <div class="inverted">
-            <h1 style="color: var(--color-brand)">Title</h1>
+            <h1 style="color: var(--color-brand-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             
-            <h1 style="color: var(--color-accent)">Title</h1>
+            <h1 style="color: var(--color-accent-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
-            <h1 style="color: var(--color-bad)">Title</h1>
+            <h1 style="color: var(--color-bad-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
-            <h1 style="color: var(--color-good)">Title</h1>
+            <h1 style="color: var(--color-good-font)">Title</h1>
             <p>Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
             <div class="highlight">
-                <h1 style="color: var(--color-accent)">Title</h1>
+                <h1 style="color: var(--color-accent-font)">Title</h1>
                 <p style="color: var(--color-brand-c)">Lorem ipsum dolor sit amet, consetetur <span class="brand">sadipscing</span> elitr, sed diam nonumy eirmod <span class="accent">tempor</span> invidunt ut labore et dolore magna aliquyam erat, sed <span class="good">diam</span> voluptua. At vero eos et accusam et justo <span class="bad">duo</span> dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
 
@@ -153,6 +176,13 @@
                 <a class="button accent-btn">Accent</a>
                 <a class="button good-btn">Good</a>
                 <a class="button bad-btn">Bad</a>
+            </div>
+
+            <div>
+                <a class="button brand-btn-selected">Brand</a>
+                <a class="button accent-btn-selected">Accent</a>
+                <a class="button good-btn-selected">Good</a>
+                <a class="button bad-btn-selected">Bad</a>
             </div>
         </div>
     </body>
