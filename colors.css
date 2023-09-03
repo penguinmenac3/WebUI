@@ -11,9 +11,9 @@
   --color-base-transparent-2: #55555555;
   /* Brand (combines with all font colors and brand-c) */
   --color-brand-c: #ffffff;
-  --color-brand: #162F68;
-  --color-brand-selected: #274280;
-  --color-brand-hover: #071C4C;
+  --color-brand: #071C4C;
+  --color-brand-selected: #162F68;
+  --color-brand-hover: #031233;
   --color-brand-font: #6278AA;
   --color-brand-font-hover: #3F5891;
   /* Accent */
