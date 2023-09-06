@@ -1,4 +1,6 @@
-/* Based on: https://paletton.com/#uid=73L1-0koVn+fbvUkhrcs2juygei */
+/* Based on: https://paletton.com/#uid=73L1-0koVn+fbvUkhrcs2juygei
+ * Accent (yellow) has increased saturation by 15 in paletton.
+ */
 :root {
   color-scheme: light dark;
   /* DARK Color Scheme */
@@ -11,6 +13,7 @@
   --color-base-font-hover: #d3d3d3;
   --color-base-transparent: #333333BB;
   --color-base-transparent-2: #55555555;
+  --color-base-disabled: #999999;
   /* Brand (combines with all font colors and brand-c) */
   --color-brand-c: #ffffff;
   --color-brand: #071C4C;
@@ -20,11 +23,11 @@
   --color-brand-font-hover: #3F5891;
   /* Accent */
   --color-accent-c: #ffffff;
-  --color-accent: #D9AB4F;
-  --color-accent-selected: #FED686;
-  --color-accent-hover: #BF8E2A;
-  --color-accent-font: #D9AB4F;
-  --color-accent-font-hover: #BF8E2A;
+  --color-accent: #E4A525;
+  --color-accent-selected: #F3BE54;
+  --color-accent-hover: #BC810D;
+  --color-accent-font: #E4A525;
+  --color-accent-font-hover: #BC810D;
   /* Bad */
   --color-bad-c: #ffffff;
   --color-bad: #A52556;
