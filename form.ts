@@ -74,6 +74,38 @@ export class FormInput extends Module<HTMLInputElement> {
     }
 }
 
+export class FormTextArea extends Module<HTMLTextAreaElement> {
+    constructor(name: string, placeholder: string, cssClass: string = "") {
+        super("textarea")
+        this.htmlElement.name = name
+        this.htmlElement.placeholder = placeholder
+        if (cssClass != "") {
+            this.setClass(cssClass)
+        }
+        this.htmlElement.oninput = () => {
+            this.onChange(this.htmlElement.value)
+        }
+        this.htmlElement.onchange = () => {
+            this.onChangeDone(this.htmlElement.value)
+        }
+    }
+
+    public value(setval: string | undefined = undefined): string {
+        if (setval !== undefined) {
+            this.htmlElement.value = setval
+        }
+        return this.htmlElement.value
+    }
+
+    public onChange(_value: string) {
+        //console.log(value)
+    }
+
+    public onChangeDone(_value: string) {
+        //console.log(value)
+    }
+}
+
 export class FormRadioButton extends Module<HTMLDivElement> {
     private radioButton: Module<HTMLInputElement>
     constructor(name: string, text: string, cssClass: string = "") {
