@@ -163,3 +163,8 @@ function getDateTimeComponents(now: Date, then: Date): DateTimeComponents {
     components.seconds = remaining;
     return components;
 }
+
+export function formatDateAsGermanString(date: Date): string {
+    let dateString = date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()
+    return dateString
+}
