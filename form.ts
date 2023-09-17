@@ -207,6 +207,34 @@ export class FormCheckbox extends Module<HTMLDivElement> {
     }
 }
 
+export class FormDropdown extends Module<HTMLDivElement> {
+    private dropDown: Module<HTMLSelectElement>
+    constructor(name: string, options: string[], cssClassDropdown: string, cssClassOption: string) {
+        super("div")
+        this.dropDown = new Module<HTMLSelectElement>("select", "", cssClassDropdown)
+        this.dropDown.htmlElement.name = name
+        for (let i = 0; i < options.length; i++) {
+            let option = new Module<HTMLOptionElement>("option", options[i], cssClassOption)
+            this.dropDown.add(option)
+        }
+        this.dropDown.htmlElement.onchange = () => {
+            this.onChange(this.dropDown.htmlElement.value)
+        }
+        this.add(this.dropDown)
+    }
+
+    public value(setval: string | undefined = undefined): string {
+        if (setval !== undefined) {
+            this.dropDown.htmlElement.value = setval
+        }
+        return this.dropDown.htmlElement.value
+    }
+
+    public onChange(_value: string) {
+        //console.log(_value)
+    }
+}
+
 export class FormSubmit extends Button {
     public onClick() {
         let parent = this.parent as Form
