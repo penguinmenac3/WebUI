@@ -209,7 +209,7 @@ export class FormCheckbox extends Module<HTMLDivElement> {
 
 export class FormDropdown extends Module<HTMLDivElement> {
     private dropDown: Module<HTMLSelectElement>
-    constructor(name: string, options: string[], cssClassDropdown: string, cssClassOption: string) {
+    constructor(name: string, options: string[], cssClassDropdown: string = "", cssClassOption: string = "") {
         super("div")
         this.dropDown = new Module<HTMLSelectElement>("select", "", cssClassDropdown)
         this.dropDown.htmlElement.name = name
