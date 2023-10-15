@@ -1,0 +1,97 @@
+.popupContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000BB;
+    z-index: 100;
+  }
+  
+  .popupContent,
+  .popupContent-fullscreen {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50% 0;
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: var(--radius);
+    background-color: var(--color-base);
+    color: var(--color-base-c);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .popupContent-fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    translate: 0 0 0;
+  }
+  
+  .popupExitBtn {
+    z-index: 101;
+    position: absolute;
+    display: inline-flex;
+    line-break: normal;
+    align-items: center;
+    justify-content: center;
+    left: 0.2em;
+    top: 0.2em;
+    width: 2em;
+    height: 2em;
+    border-radius: var(--radius);
+    font-size: 1.2em;
+  }
+  
+  .popupExitBtn:hover {
+    background-color: var(--color-bad);
+    color: var(--color-bad-c);
+  }
+
+  .popupConfirmBtn,
+  .popupCancelBtn {
+    width: 30%;
+    display: inline-block;
+    margin: 0.25em;
+    padding: 0.5em;
+    border-radius: var(--radius);
+  }
+
+  .popupConfirmBtn {
+    color: var(--color-good-c);
+    background-color: var(--color-good);
+  }
+  
+  .popupConfirmBtn:hover {
+    background-color: var(--color-good-hover);
+  }
+
+  .popupCancelBtn {
+    color: var(--color-bad-c);
+    background-color: var(--color-bad);
+  }
+
+  .popupCancelBtn:hover {
+    background-color: var(--color-bad-hover);
+  }
+  
+  .popupTitle {
+    display: block;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+  
+  .popupSubtitle {
+    display: block;
+    padding-top: 1em;
+    font-size: large;
+    font-weight: bold;
+  }
+  

@@ -2,6 +2,8 @@ import { Button } from "./form";
 import { iconXmark } from "./icons/icons";
 import { Module } from "./module";
 
+import './popup.css'
+
 
 export class Popup extends Module<HTMLDivElement> {
     public container: Module<HTMLDivElement>
@@ -38,13 +40,13 @@ export class ConfirmCancelPopup extends Popup {
     ) {
         super(innerClass, containerClass)
         this.add(new Module("p", question))
-        let confirm = new Button(confirmText)
+        let confirm = new Button(confirmText, "popupConfirmBtn")
         confirm.onClick = () => {
             this.dispose()
             this.onConfirm()
         }
         this.add(confirm)
-        let cancel = new Button(cancelText)
+        let cancel = new Button(cancelText, "popupCancelBtn")
         cancel.onClick = () => {
             this.dispose()
             this.onCancel()
