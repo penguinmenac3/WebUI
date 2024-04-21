@@ -66,9 +66,9 @@ export class ConfirmCancelPopup extends Popup {
 
 export class ExitablePopup extends Popup {
     public constructor(
-        innerClass: string,
-        containerClass: string,
-        exitButtonClass: string = ""
+        innerClass: string = "popupContent",
+        containerClass: string = "popupContainer",
+        exitButtonClass: string = "popupExitBtn"
     ) {
         super(innerClass, containerClass)
         let exitButton = new Button(iconXmark, exitButtonClass)
