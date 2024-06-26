@@ -30,14 +30,14 @@ export class PageManager {
 
     private onOpen() {
         let kwargs: KWARGS = {}
-        let page = this.defaultPage
 
         let hash = location.hash.slice(1)  // remove #
-        let parts = hash.split("&")
-        if (parts.length > 0) {
-            page = parts[0]
-            parts = parts.splice(1)
+        if (hash.length == 0) {
+            hash = this.defaultPage
         }
+        let parts = hash.split("&")
+        let page = parts[0]
+        parts = parts.splice(1)
         for (const part of parts) {
             let tokens = part.split("=")
             let key = decodeURIComponent(tokens[0])
