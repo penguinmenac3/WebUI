@@ -21,6 +21,7 @@
   --color-brand-hover: #031233;
   --color-brand-font: #6278AA;
   --color-brand-font-hover: #3F5891;
+  --color-brand-font-dark: #6278AA;
   /* Accent */
   --color-accent-c: #ffffff;
   --color-accent: #E4A525;
@@ -66,6 +67,7 @@
     --color-base-font-hover: #302E2E;
     --color-base-transparent: #ffffffBB;
     --color-base-transparent-2: #55555555;
+    --color-brand-font-dark: #071C4C;
     --color-subtle-gray: #EEEEEE;
     --color-contrast-gray: #AAAAAA;
     --color-shadow-color: rgba(0, 0, 0, 0.15);
