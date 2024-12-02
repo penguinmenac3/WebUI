@@ -43,6 +43,9 @@
   --color-good-font: #8BC548;
   --color-good-font-hover: #6FAD26;
   /* Other */
+  --color-subtle-gray: #383838;
+  --color-contrast-gray: #7e7e7e;
+  --color-shadow-color: rgba(0, 0, 0, 0.5);
   --color-debug: #e100ff;
   --radius: 0.3em;
   --radius-large: 0.5em;
@@ -63,6 +66,9 @@
     --color-base-font-hover: #302E2E;
     --color-base-transparent: #ffffffBB;
     --color-base-transparent-2: #55555555;
+    --color-subtle-gray: #EEEEEE;
+    --color-contrast-gray: #AAAAAA;
+    --color-shadow-color: rgba(0, 0, 0, 0.15);
     color: var(--color-base-c);
     fill: var(--color-base-c);
     background-color: var(--color-base);
