@@ -21,9 +21,23 @@ export class Module<T extends HTMLElement> {
         module.parent = this
     }
 
+    public addHtml(elementType: string, innerHTML: string, cssClass: string = ""): HTMLElement {
+        const element = document.createElement(elementType)
+        element.innerHTML = innerHTML
+        if (cssClass != "") {
+            element.classList.add(cssClass)
+        }
+        this.htmlElement.appendChild(element)
+        return element
+    }
+
     public remove(module: Module<HTMLElement>): void {
         this.htmlElement.removeChild(module.htmlElement)
         module.parent = null
+    }
+
+    public removeHTML(element: HTMLElement): void {
+        this.htmlElement.removeChild(element)
     }
 
     public isVisible(): boolean {
