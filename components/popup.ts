@@ -1,6 +1,6 @@
 import { Button } from "./form";
-import { iconXmark } from "./icons/icons";
-import { Module } from "./module";
+import { iconXmark } from "../icons";
+import { Module } from "../module";
 
 import './popup.css'
 
