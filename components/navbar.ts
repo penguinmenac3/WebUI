@@ -1,6 +1,7 @@
 
 import { Button } from "./form";
 import { Module } from "../module";
+import "./navbar.css"
 
 
 export class Navbar extends Module<HTMLDivElement> {
