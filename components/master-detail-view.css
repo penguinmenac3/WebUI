@@ -1,0 +1,28 @@
+.master-detail-view {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.master-detail-view .master {
+  display: inline-block;
+  height: 100%;
+  background-color: var(--color-base-hover);
+}
+
+.master-detail-view .master:hover {
+}
+
+.master-detail-view .detail {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+}
+
+.master-detail-view .sidepanel {
+    display: inline-block;
+    height: 100%;
+    background-color: var(--color-base-hover);
+}
