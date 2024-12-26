@@ -53,12 +53,34 @@ export class PageManager {
             console.log("Show page: " + page)
             this.pages[this.currentPage]?.show()
         }
-        console.log("Calling page.update with: " + JSON.stringify(kwargs))
+        console.log("Calling page.update with: " + JSON.stringify(kwargs) + " changedPage=" + changedPage)
 
         this.pages[this.currentPage]?.update(kwargs, changedPage)
     }
 
     public static open(page: string, kwargs: KWARGS) {
+        window.setTimeout(() => {
+            let kwargs_str = ""
+            for (let key in kwargs) {
+                kwargs_str += "&" + encodeURIComponent(key) + "=" + encodeURIComponent(kwargs[key])
+            }
+            location.hash = "#" + encodeURIComponent(page) + kwargs_str
+        }, 200)
+    }
+
+    public static update(kwargs: KWARGS) {
+        let hash = location.hash.slice(1)  // remove #
+        let parts = hash.split("&")
+        let page = parts[0]
+        parts = parts.splice(1)
+        for (const part of parts) {
+            let tokens = part.split("=")
+            let key = decodeURIComponent(tokens[0])
+            let val = decodeURIComponent(tokens[1])
+            if (!kwargs.hasOwnProperty(key)) {
+                kwargs[key] = val
+            }
+        }
         window.setTimeout(() => {
             let kwargs_str = ""
             for (let key in kwargs) {
