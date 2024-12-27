@@ -1,8 +1,7 @@
+import './popup.css'
 import { Button } from "./form";
 import { iconXmark } from "../icons";
 import { Module } from "../module";
-
-import './popup.css'
 
 
 export class Popup extends Module<HTMLDivElement> {

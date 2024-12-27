@@ -1,6 +1,6 @@
+import "./master-detail-view.css"
 import { KWARGS, Module } from "../module";
 import { isSmallScreen } from "../utils/responsive";
-import "./master-detail-view.css"
 
 
 export class MasterDetailView extends Module<HTMLElement> {
