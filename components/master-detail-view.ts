@@ -3,16 +3,17 @@ import { isSmallScreen } from "../utils/responsive";
 import "./master-detail-view.css"
 
 
-export class MasterDetailView extends Module<HTMLDivElement> {
-    public static RESIZE_HANDLE_WIDTH = 10;
-    public static MIN_PANEL_WIDTH = 150;
-    private isMasterResizing = false;
+export class MasterDetailView extends Module<HTMLElement> {
     private isSidepanelResizing = false;
-    private isSmallScreen = false;
+    private isMasterResizing = false;
     private preferredView: string = "master";
     private master: Module<HTMLElement>;
     private detail: Module<HTMLElement>;
     private sidepanel: Module<HTMLElement> | null = null;
+    private leftHandleWidth: number = 0;
+    private rightHandleWidth: number = 0;
+
+    static MIN_PANEL_WIDTH = 200; // Minimum panel width in pixels
 
     constructor(
         private masterContent: Module<HTMLElement>,
@@ -21,34 +22,38 @@ export class MasterDetailView extends Module<HTMLDivElement> {
         cssClass = "master-detail-view"
     ) {
         super("div", "", cssClass);
-        
+
         this.master = new Module<HTMLElement>("div", "", "master");
-        this.master.add(masterContent)
+        this.detail = new Module<HTMLElement>("div", "", "detail");
+        window.setTimeout(() => {
+            let detailStyle = getComputedStyle(this.detail.htmlElement)
+            this.leftHandleWidth = parseFloat(detailStyle.getPropertyValue('border-left-width'))
+            this.rightHandleWidth = parseFloat(detailStyle.getPropertyValue('border-right-width'))
+            this.adjustLayout();
+        }, 100);
+        this.setupLayout();
+        this.addEventListeners();
+    }
+
+    private setupLayout(): void {
+        this.master.add(this.masterContent);
         this.add(this.master);
 
-        this.detail = new Module<HTMLElement>("div", "", "detail");
-        this.detail.add(detailContent)
+        this.detail.add(this.detailContent);
         this.add(this.detail);
 
-        if (sidepanelContent != null) {
+        if (this.sidepanelContent != null) {
             this.sidepanel = new Module<HTMLElement>("div", "", "sidepanel");
-            this.sidepanel.add(sidepanelContent)
+            this.sidepanel.add(this.sidepanelContent);
             this.add(this.sidepanel);
         }
+    }
 
-        // Based on screen size, adjust the layout of the master, detail and sidepanel modules
-        window.addEventListener("resize", () => {
-            this.adjustLayout();
-        });
-        this.adjustLayout(); // Adjust the layout initially
-
-        // Set up event listeners for resizing
-        this.master.htmlElement.addEventListener('mousedown', (e) => this.startResizing(e, 'master'));
-        if (this.sidepanel != null) {
-            this.sidepanel.htmlElement.addEventListener('mousedown', (e) => this.startResizing(e, 'sidepanel'));
-        }
-        document.addEventListener('mousemove', (e) => this.onResize(e));
-        document.addEventListener('mouseup', () => this.endResizing());
+    private addEventListeners(): void {
+        window.addEventListener("resize", () => this.adjustLayout());
+        this.detail.htmlElement.addEventListener('mousedown', (e) => this.startResizing(e));
+        window.addEventListener('mousemove', (e) => this.onResize(e));
+        window.addEventListener('mouseup', () => this.endResizing());
     }
 
     public update(kwargs: KWARGS, changedPage: boolean): void {
@@ -58,150 +63,125 @@ export class MasterDetailView extends Module<HTMLDivElement> {
     }
 
     public setPreferedView(preferredView: string): void {
-        // Check if preferred view is in ["master", "detail"]
         if (!["master", "detail"].includes(preferredView)) {
             throw new Error("Invalid preferred view. Please choose 'master' or 'detail'.");
         }
-        console.log("setPreferedView", preferredView)
         this.preferredView = preferredView;
         this.adjustLayout();
     }
 
-    // Function to adjust the layout based on screen size
-    private adjustLayout() {
-        this.isSmallScreen = isSmallScreen()
-        if (this.isSmallScreen) { // For small screens, show only one module
+    private adjustLayout(): void {
+        if (isSmallScreen()) {
+            this.adjustLayoutForSmallScreens();
+        } else {
+            this.adjustLayoutForLargeScreens();
+        }
+    }
+
+    private adjustLayoutForSmallScreens(): void {
+        this.detail.htmlElement.style.borderLeftWidth = "0px"
+        this.detail.htmlElement.style.borderRightWidth = "0px"
+        if (this.preferredView === "detail") {
             this.master.hide();
-            this.detail.hide();
-            if (this.sidepanel != null) {
-                this.sidepanel.hide();
-            }
-            if (this.preferredView === "detail") {
-                this.detail.show();
-            } else {
-                this.master.show();
-            }
-            // Make shown modules fullscreen
-            this.master.htmlElement.style.width = "100%";
-            this.master.htmlElement.style.paddingRight = `0px`;
-            if (this.sidepanel != null) {
-                this.sidepanel.htmlElement.style.width = "100%";
-                this.sidepanel.htmlElement.style.paddingLeft = `0px`;
-            }
-            this.detail.htmlElement.style.width = "100%";
-        } else { // For larger screens, show all modules
             this.detail.show();
+        } else {
+            this.detail.hide();
             this.master.show();
-            if (this.sidepanel != null) {
-                this.sidepanel.show();
-            }
-            // load stored panelsize from local storage or set default split if not found
-            let storedPanelSize = localStorage.getItem("webui_masterDetailViewPanelSizes");
-            if (!storedPanelSize) {
-                storedPanelSize = "20,30"; // default split for master and sidepanel
-            }
-            let [masterPercentage, sidepanelPercentage] = storedPanelSize.split(",").map(Number);
-            this.master.htmlElement.style.width = masterPercentage + "%";
-            this.master.htmlElement.style.paddingRight = `${MasterDetailView.RESIZE_HANDLE_WIDTH}px`;
-            const containerWidth = this.htmlElement.clientWidth;
-            let paddingPercent = MasterDetailView.RESIZE_HANDLE_WIDTH / containerWidth * 100
-            if (this.sidepanel != null) {
-                this.sidepanel.htmlElement.style.width = sidepanelPercentage + "%";
-                this.sidepanel.htmlElement.style.paddingLeft = `${MasterDetailView.RESIZE_HANDLE_WIDTH}px`;
-                this.detail.htmlElement.style.width = (100 - (2 * paddingPercent) - (masterPercentage + sidepanelPercentage)) + "%";
-            } else {
-                this.detail.htmlElement.style.width = (100 - paddingPercent - masterPercentage) + "%";
-            }
-            
-            const rect = this.master.htmlElement.getBoundingClientRect();
-            if (rect.right - rect.left < MasterDetailView.MIN_PANEL_WIDTH) {
-                this.masterContent.hide()
-                this.master.htmlElement.style.width = "0px"
-                masterPercentage = 0;
-            } else {
-                this.masterContent.show()
-            }
-            if (this.sidepanel != null && this.sidepanelContent != null) {
-                const rect = this.sidepanel.htmlElement.getBoundingClientRect();
-                if(rect.right - rect.left < MasterDetailView.MIN_PANEL_WIDTH) {
-                    this.sidepanelContent.hide()
-                    this.sidepanel.htmlElement.style.width = "0px"
-                    sidepanelPercentage = 0
-                } else {
-                    this.sidepanelContent.show()
-                }
-            }
-            paddingPercent = MasterDetailView.RESIZE_HANDLE_WIDTH / containerWidth * 100
-            if (this.sidepanel != null) {
-                this.sidepanel.htmlElement.style.width = sidepanelPercentage + "%";
-                this.sidepanel.htmlElement.style.paddingLeft = `${MasterDetailView.RESIZE_HANDLE_WIDTH}px`;
-                this.detail.htmlElement.style.width = (100 - (2 * paddingPercent) - (masterPercentage + sidepanelPercentage)) + "%";
-            } else {
-                this.detail.htmlElement.style.width = (100 - paddingPercent - masterPercentage) + "%";
-            }
         }
+        this.sidepanel?.hide();
+        this.detail.htmlElement.style.width = "100%";
+        this.master.htmlElement.style.width = "100%";
     }
 
-    private startResizing(e: MouseEvent, panel: 'master' | 'sidepanel') {
-        // prevent resizing in small screen mode
-        if (this.isSmallScreen) return;
-        // handle resizing for master and sidepanel
-        if (panel === 'master') {
-            const rect = this.master.htmlElement.getBoundingClientRect();
-            if (rect.right - e.clientX <= MasterDetailView.RESIZE_HANDLE_WIDTH) {
-                this.isMasterResizing = true;
-                e.preventDefault();
-            }
-        } else if (panel === 'sidepanel' && this.sidepanel != null) {
-            const rect = this.sidepanel.htmlElement.getBoundingClientRect();
-            if (e.clientX - rect.left <= MasterDetailView.RESIZE_HANDLE_WIDTH) {
-                this.isSidepanelResizing = true;
-                e.preventDefault();
+    private adjustLayoutForLargeScreens(): void {
+        this.detail.htmlElement.style.borderLeftWidth = ""
+        this.detail.htmlElement.style.borderRightWidth = ""
+        this.master.show();
+        this.detail.show();
+        this.sidepanel?.show();
+
+        let [masterPercentage, sidepanelPercentage] = this.getStoredPanelSizes();
+        [masterPercentage, sidepanelPercentage] = this.autohideSmallPanels(masterPercentage, sidepanelPercentage);
+
+        this.master.htmlElement.style.width = `${masterPercentage}%`;
+        if (masterPercentage == 0) {
+            this.masterContent.hide()
+        } else {
+            this.masterContent.show()
+        }
+        if (this.sidepanel != null) {
+            this.sidepanel.htmlElement.style.width = `${sidepanelPercentage}%`;
+            if (sidepanelPercentage == 0) {
+                this.sidepanelContent?.hide()
+            } else {
+                this.sidepanelContent?.show()
             }
         }
+        this.detail.htmlElement.style.width = 100 - (masterPercentage + sidepanelPercentage) + "%";
     }
 
-    private onResize(e: MouseEvent) {
-        if (this.isMasterResizing || this.isSidepanelResizing) {
+    private getStoredPanelSizes(): [number, number] {
+        let storedPanelSize = localStorage.getItem("webui_masterDetailViewPanelSizes");
+        if (!storedPanelSize) {
+            storedPanelSize = "20,30"; // default split for master and sidepanel
+        }
+        let [master, sidepanel] = storedPanelSize.split(",").map(Number)
+        if (this.sidepanel == null) {
+            sidepanel = 0
+        }
+        return [master, sidepanel];
+    }
+
+    private autohideSmallPanels(masterWidth: number, sidepanelWidth: number): [number, number] {
+        const containerWidth = this.htmlElement.clientWidth;
+        let absoluteMasterWidth = masterWidth * containerWidth / 100;
+        if (absoluteMasterWidth < MasterDetailView.MIN_PANEL_WIDTH) {
+            masterWidth = 0;
+        }
+        let absoluteSidepanelWidth = sidepanelWidth * containerWidth / 100;
+        if (absoluteSidepanelWidth < MasterDetailView.MIN_PANEL_WIDTH) {
+                sidepanelWidth = 0;
+        }
+        return [masterWidth, sidepanelWidth];
+    }
+
+    private startResizing(e: MouseEvent): void {
+        if (isSmallScreen()) return;
+
+        const rect = this.detail.htmlElement.getBoundingClientRect();
+        if (e.clientX - rect.left <= this.leftHandleWidth) {
+            this.isMasterResizing = true;
             e.preventDefault();
-            const containerWidth = this.htmlElement.clientWidth;
-            let storedPanelSize = localStorage.getItem("webui_masterDetailViewPanelSizes");
-            if (!storedPanelSize) {
-                storedPanelSize = "20,30"; // default split for master and sidepanel
-            }
-            let [masterPercentage, sidepanelPercentage] = storedPanelSize.split(",").map(Number);
-            let newMasterWidth = masterPercentage * containerWidth / 100;
-            let newSidepanelWidth = sidepanelPercentage * containerWidth / 100;
-            
-            if (this.isMasterResizing) {
-                const masterRect = this.master.htmlElement.getBoundingClientRect();
-                newMasterWidth = Math.max(0, Math.min(e.clientX - masterRect.left, containerWidth / 2 - 10)); // Min width of 10% and max width of container - 50px for sidepanel
-                if (newMasterWidth < MasterDetailView.MIN_PANEL_WIDTH) {
-                    newMasterWidth = 0;
-                }
-                this.master.htmlElement.style.width = `${newMasterWidth}px`;
-                masterPercentage = (newMasterWidth / containerWidth) * 100
-            } else if (this.isSidepanelResizing && this.sidepanel != null) {
-                const sidepanelRect = this.sidepanel.htmlElement.getBoundingClientRect();
-                newSidepanelWidth = Math.max(0 , Math.min(sidepanelRect.right - e.clientX, containerWidth / 2 - 10)); // Min width of 10% and max width of container - 50px for master
-                if (newSidepanelWidth < MasterDetailView.MIN_PANEL_WIDTH) {
-                    newSidepanelWidth = 0;
-                }
-                this.sidepanel.htmlElement.style.width = `${newSidepanelWidth}px`;
-                sidepanelPercentage = (newSidepanelWidth / containerWidth) * 100;
-            }
-            let paddingPercent = MasterDetailView.RESIZE_HANDLE_WIDTH / containerWidth * 100
-            if (this.sidepanel != null) {
-                this.detail.htmlElement.style.width = (100 - 2 * paddingPercent - (masterPercentage + sidepanelPercentage)) + "%";
-            } else {
-                this.detail.htmlElement.style.width = (100 - paddingPercent - masterPercentage) + "%";
-            }
-            localStorage.setItem("webui_masterDetailViewPanelSizes", `${masterPercentage},${sidepanelPercentage}`);
-            this.adjustLayout()
+        }
+        if (rect.right - e.clientX <= this.rightHandleWidth) {
+            this.isSidepanelResizing = true;
+            e.preventDefault();
         }
     }
 
-    private endResizing() {
+    private onResize(e: MouseEvent): void {
+        if (!this.isMasterResizing && !this.isSidepanelResizing) return;
+
+        const containerWidth = this.htmlElement.clientWidth;
+        let [masterPercentage, sidepanelPercentage] = this.getStoredPanelSizes();
+        if (this.isMasterResizing) {
+            masterPercentage = e.clientX / containerWidth * 100;
+            masterPercentage = Math.max(0, Math.min(masterPercentage, 50)); // Min width of 0% and max width of 50%
+            if (masterPercentage < MasterDetailView.MIN_PANEL_WIDTH / containerWidth * 100) {
+                masterPercentage = 0;
+            }
+        } else if (this.isSidepanelResizing) {
+            sidepanelPercentage = 100 - (e.clientX / containerWidth * 100);
+            sidepanelPercentage = Math.max(0, Math.min(sidepanelPercentage, 50)); // Min width of 0% and max width of 50%
+            if (sidepanelPercentage < MasterDetailView.MIN_PANEL_WIDTH / containerWidth * 100) {
+                sidepanelPercentage = 0;
+            }
+        }
+        localStorage.setItem("webui_masterDetailViewPanelSizes", `${masterPercentage},${sidepanelPercentage}`);
+        this.adjustLayout();
+    }
+
+    private endResizing(): void {
         this.isMasterResizing = false;
         this.isSidepanelResizing = false;
     }

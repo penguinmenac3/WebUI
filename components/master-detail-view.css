@@ -9,20 +9,22 @@
 .master-detail-view .master {
   display: inline-block;
   height: 100%;
-  background-color: var(--color-base-hover);
-}
-
-.master-detail-view .master:hover {
+  background-color: var(--color-base-2);
 }
 
 .master-detail-view .detail {
     display: inline-block;
     height: 100%;
-    width: 50%;
+    border-left-color: var(--color-base-2);
+    border-left-width: 10px;
+    border-left-style: solid;
+    border-right-color: var(--color-base-2);
+    border-right-width: 10px;
+    border-right-style: solid;
 }
 
 .master-detail-view .sidepanel {
     display: inline-block;
     height: 100%;
-    background-color: var(--color-base-hover);
+    background-color: var(--color-base-2);
 }

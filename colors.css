@@ -8,7 +8,8 @@
   --color-base-c: #ffffff;
   --color-base-c-hover: #d3d3d3;
   --color-base: #201E1E;
-  --color-base-hover: #302E2E;
+  --color-base-2: #302E2E;
+  --color-base-hover: #403E3E;
   --color-base-font: #ffffff;
   --color-base-font-hover: #d3d3d3;
   --color-base-transparent: #333333BB;
@@ -44,7 +45,7 @@
   --color-good-font: #8BC548;
   --color-good-font-hover: #6FAD26;
   /* Other */
-  --color-subtle-gray: #383838;
+  --color-subtle-gray: #302E2E;
   --color-contrast-gray: #7e7e7e;
   --color-shadow-color: rgba(0, 0, 0, 0.5);
   --color-debug: #e100ff;
@@ -62,13 +63,14 @@
     --color-base-c: #201E1E;
     --color-base-c-hover: #302E2E;
     --color-base: #ffffff;
+    --color-base-2: #efefef;
     --color-base-hover: #d3d3d3;
     --color-base-font: #201E1E;
     --color-base-font-hover: #302E2E;
     --color-base-transparent: #ffffffBB;
     --color-base-transparent-2: #55555555;
     --color-brand-font-dark: #071C4C;
-    --color-subtle-gray: #EEEEEE;
+    --color-subtle-gray: #efefef;
     --color-contrast-gray: #AAAAAA;
     --color-shadow-color: rgba(0, 0, 0, 0.15);
     color: var(--color-base-c);
