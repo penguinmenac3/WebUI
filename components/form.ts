@@ -1,4 +1,5 @@
 import { Module } from "../module";
+import "./form.css"
 
 
 export class Button extends Module<HTMLLinkElement> {
