@@ -3,7 +3,7 @@ import "./form.css"
 
 
 export class Button extends Module<HTMLLinkElement> {
-    constructor(text: string, cssClass: string = "") {
+    constructor(text: string, cssClass: string = "button") {
         super("a", text, cssClass)
         this.htmlElement.onclick = (e: Event) => {
             e.stopPropagation()
@@ -18,8 +18,8 @@ export class Button extends Module<HTMLLinkElement> {
 
 
 export class Form extends Module<HTMLDivElement> {
-    constructor(...modules: Module<HTMLElement>[]) {
-        super("div")
+    constructor(cssClass: string, ...modules: Module<HTMLElement>[]) {
+        super("div", "", cssClass)
         for (const module of modules) {
             this.add(module)
         }
@@ -43,14 +43,11 @@ export class Form extends Module<HTMLDivElement> {
 }
 
 export class FormInput extends Module<HTMLInputElement> {
-    constructor(name: string, placeholder: string, type: string, cssClass: string = "") {
-        super("input")
+    constructor(name: string, placeholder: string, type: string, cssClass: string = "formInput") {
+        super("input", "", cssClass)
         this.htmlElement.name = name
         this.htmlElement.placeholder = placeholder
         this.htmlElement.type = type
-        if (cssClass != "") {
-            this.setClass(cssClass)
-        }
         this.htmlElement.oninput = () => {
             this.onChange(this.htmlElement.value)
         }
@@ -76,13 +73,10 @@ export class FormInput extends Module<HTMLInputElement> {
 }
 
 export class FormTextArea extends Module<HTMLTextAreaElement> {
-    constructor(name: string, placeholder: string, cssClass: string = "") {
-        super("textarea")
+    constructor(name: string, placeholder: string, cssClass: string = "formTextArea") {
+        super("textarea", "", cssClass)
         this.htmlElement.name = name
         this.htmlElement.placeholder = placeholder
-        if (cssClass != "") {
-            this.setClass(cssClass)
-        }
         this.htmlElement.oninput = () => {
             this.onChange(this.htmlElement.value)
         }
@@ -109,14 +103,11 @@ export class FormTextArea extends Module<HTMLTextAreaElement> {
 
 export class FormRadioButton extends Module<HTMLDivElement> {
     private radioButton: Module<HTMLInputElement>
-    constructor(name: string, text: string, cssClass: string = "") {
-        super("div")
+    constructor(name: string, text: string, cssClass: string = "formRadioButton") {
+        super("div", "", cssClass)
         this.radioButton = new Module<HTMLInputElement>("input")
         this.radioButton.htmlElement.name = name
         this.radioButton.htmlElement.type = "radio"
-        if (cssClass != "") {
-            this.setClass(cssClass)
-        }
         this.radioButton.htmlElement.onchange = () => {
             this.onChange(this.radioButton.htmlElement.checked)
         }
@@ -141,7 +132,7 @@ export class FormRadioButton extends Module<HTMLDivElement> {
 export class FormRadioButtonGroup extends Module<HTMLDivElement> {
     private selectedIndex: number = 0
     private radioButtons: FormRadioButton[] = []
-    constructor(groupName: string, labels: string[], cssClass: string = "") {
+    constructor(groupName: string, labels: string[], cssClass: string = "formRadioButtonGroup") {
         super("div", "", cssClass)
         for (let i = 0; i < labels.length; i++) {
             let radioButton = new FormRadioButton(groupName, labels[i],  "")
@@ -170,7 +161,7 @@ export class FormRadioButtonGroup extends Module<HTMLDivElement> {
 }
 
 export class FormLabel extends Module<HTMLLabelElement> {
-    constructor(text: string, cssClass: string = "") {
+    constructor(text: string, cssClass: string = "formLabel") {
         super("label", text, cssClass)
     }
 }
@@ -178,15 +169,12 @@ export class FormLabel extends Module<HTMLLabelElement> {
 export class FormCheckbox extends Module<HTMLDivElement> {
     private checkbox: Module<HTMLInputElement>
 
-    constructor(name: string, text: string, cssClass: string = "", initialValue: boolean = false) {
-        super("div")
+    constructor(name: string, text: string, initialValue: boolean = false, cssClass: string = "formCheckbox") {
+        super("div", "", cssClass)
         this.checkbox = new Module<HTMLInputElement>("input")
         this.checkbox.htmlElement.name = name
         this.checkbox.htmlElement.type = "checkbox"
         this.checkbox.htmlElement.checked = initialValue
-        if (cssClass != "") {
-            this.setClass(cssClass)
-        }
         this.checkbox.htmlElement.onchange = () => {
             this.onChange(this.checkbox.htmlElement.checked)
         }
@@ -210,7 +198,7 @@ export class FormCheckbox extends Module<HTMLDivElement> {
 
 export class FormDropdown extends Module<HTMLDivElement> {
     private dropDown: Module<HTMLSelectElement>
-    constructor(name: string, options: string[], cssClassDropdown: string = "", cssClassOption: string = "") {
+    constructor(name: string, options: string[], cssClassDropdown: string = "formDropdown", cssClassOption: string = "formDropdownElement") {
         super("div")
         this.dropDown = new Module<HTMLSelectElement>("select", "", cssClassDropdown)
         this.dropDown.htmlElement.name = name
