@@ -1,5 +1,6 @@
 /** Button */
 .button,
+.buttonLarge,
 .buttonWide,
 .buttonNarrow {
   display: inline-block;
@@ -12,11 +13,15 @@
 }
 
 .button:hover,
+.buttonLarge:hover,
 .buttonWide:hover,
 .buttonNarrow:hover {
   background-color: var(--color-brand-hover);
 }
 
+.buttonLarge {
+  padding: 2em;
+}
 
 .buttonWide {
   width: -webkit-fill-available;

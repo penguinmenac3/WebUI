@@ -2,7 +2,7 @@ import "./form.css"
 import { Module } from "../module";
 
 
-export class Button extends Module<HTMLLinkElement> {
+export class Button extends Module<HTMLAnchorElement> {
     constructor(text: string, cssClass: string = "button") {
         super("a", text, cssClass)
         this.htmlElement.onclick = (e: Event) => {
