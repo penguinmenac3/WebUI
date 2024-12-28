@@ -3,9 +3,12 @@ import { Module } from "../module";
 
 
 export class Button extends Module<HTMLAnchorElement> {
+    protected disabled: boolean = false
+
     constructor(text: string, cssClass: string = "button") {
         super("a", text, cssClass)
         this.htmlElement.onclick = (e: Event) => {
+            if (this.disabled) return
             e.stopPropagation()
             this.onClick()
         }
@@ -13,6 +16,16 @@ export class Button extends Module<HTMLAnchorElement> {
 
     public onClick() {
         console.log("Buttom::onClick: Not implemented! Must be implemented by subclass.")
+    }
+    
+    public disable() {
+        this.disabled = true
+        this.setClass("disabled")
+    }
+
+    public enable() {
+        this.disabled = false
+        this.unsetClass("disabled")
     }
 }
 
