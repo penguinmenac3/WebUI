@@ -4,20 +4,20 @@ import { Module } from "../module";
 
 
 export class Navbar extends Module<HTMLDivElement> {
-    constructor(
-        buttons: NavbarButton[],
-        cssClass: string = "navbar"
-    ) {
+    constructor(cssClass: string = "navbar") {
         super("div", "", cssClass)
-        buttons.forEach(button => {
-            this.add(button)
-        })
     }
 }
 
 export class NavbarButton extends Button {
     constructor(innerHTML: string, cssClass: string = "navbar-button") {
         super(innerHTML, cssClass)
+    }
+}
+
+export class NavbarHeader extends Module<HTMLDivElement> {
+    constructor(innerHTML: string, cssClass: string = "navbar-header") {
+        super("div", innerHTML, cssClass)
     }
 }
 

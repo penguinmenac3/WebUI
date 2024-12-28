@@ -1,3 +1,41 @@
+.navbar {
+    display: flex;
+    height: 2.5em;
+    background-color: var(--color-brand);
+    color: var(--color-brand-c);
+    fill: var(--color-brand-c);
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.navbar-button {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-top: 0.1em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+    padding-top: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-radius: var(--radius);
+    background-color: var(--color-brand);
+    color: var(--color-brand-c);
+    fill: var(--color-brand-c);
+}
+
+.navbar-button:hover {
+    background-color: var(--color-brand-hover);
+}
+
+.navbar-header {
+    height: 2.5em;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .bottomNavbar {
     width: -webkit-fill-available;
     display: block;
