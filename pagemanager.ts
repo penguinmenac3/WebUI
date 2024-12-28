@@ -6,6 +6,7 @@ export interface Pages{
 
 
 export class PageManager {
+    public static DEBUG = false
     private currentPage = ""
 
     constructor(
@@ -47,13 +48,19 @@ export class PageManager {
 
         let changedPage = this.currentPage != page
         if (changedPage) {
-            console.log("Hide page: " + this.currentPage)
+            if (PageManager.DEBUG) {
+                console.log("Hide page: " + this.currentPage)
+            }
             this.pages[this.currentPage]?.hide()
             this.currentPage = page
-            console.log("Show page: " + page)
+            if (PageManager.DEBUG) {
+                console.log("Show page: " + page)
+            }
             this.pages[this.currentPage]?.show()
         }
-        console.log("Calling page.update with: " + JSON.stringify(kwargs) + " changedPage=" + changedPage)
+        if (PageManager.DEBUG) {
+            console.log("Calling page.update with: " + JSON.stringify(kwargs) + " changedPage=" + changedPage)
+        }
 
         this.pages[this.currentPage]?.update(kwargs, changedPage)
     }
