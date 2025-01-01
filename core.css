@@ -28,3 +28,21 @@
 .disabled {
   background-color: var(--color-contrast-gray) !important;
 }
+
+.good {
+  color: var(--color-good-c) !important;
+  background-color: var(--color-good) !important;
+}
+
+.good:hover {
+  background-color: var(--color-good-hover) !important;
+}
+
+.bad {
+  color: var(--color-bad-c) !important;
+  background-color: var(--color-bad) !important;
+}
+
+.bad:hover {
+  background-color: var(--color-bad-hover) !important;
+}
