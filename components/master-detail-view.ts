@@ -54,6 +54,30 @@ export class MasterDetailView extends Module<HTMLElement> {
         this.detail.htmlElement.addEventListener('mousedown', (e) => this.startResizing(e));
         window.addEventListener('mousemove', (e) => this.onResize(e));
         window.addEventListener('mouseup', () => this.endResizing());
+
+        // CTRL + B toggles master
+        // CTRL + ALT + B toggles sidepanel
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && e.key === 'B') {
+                e.preventDefault()
+                let [masterPercentage, sidepanelPercentage] = this.getStoredPanelSizes()
+                if (e.altKey) {
+                    if (sidepanelPercentage > 0) {
+                        sidepanelPercentage = 0
+                    } else {
+                        sidepanelPercentage = 30
+                    }
+                } else {
+                    if (masterPercentage > 0) {
+                        masterPercentage = 0
+                    } else {
+                        masterPercentage = 30
+                    }
+                }
+                localStorage.setItem("webui_masterDetailViewPanelSizes", `${masterPercentage},${sidepanelPercentage}`)
+                this.adjustLayout()
+            }
+        })
     }
 
     public update(kwargs: KWARGS, changedPage: boolean): void {
@@ -123,7 +147,7 @@ export class MasterDetailView extends Module<HTMLElement> {
     private getStoredPanelSizes(): [number, number] {
         let storedPanelSize = localStorage.getItem("webui_masterDetailViewPanelSizes");
         if (!storedPanelSize) {
-            storedPanelSize = "20,30"; // default split for master and sidepanel
+            storedPanelSize = "30,30"; // default split for master and sidepanel
         }
         let [master, sidepanel] = storedPanelSize.split(",").map(Number)
         if (this.sidepanel == null) {
