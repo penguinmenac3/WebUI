@@ -147,7 +147,7 @@ export class MasterDetailView extends Module<HTMLElement> {
     private getStoredPanelSizes(): [number, number] {
         let storedPanelSize = localStorage.getItem("webui_masterDetailViewPanelSizes");
         if (!storedPanelSize) {
-            storedPanelSize = "30,30"; // default split for master and sidepanel
+            storedPanelSize = "30,0"; // default split for master and sidepanel
         }
         let [master, sidepanel] = storedPanelSize.split(",").map(Number)
         if (this.sidepanel == null) {
