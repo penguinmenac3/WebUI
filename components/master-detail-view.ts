@@ -202,7 +202,7 @@ export class MasterDetailView extends Module<HTMLElement> {
             }
         }
         localStorage.setItem("webui_masterDetailViewPanelSizes", `${masterPercentage},${sidepanelPercentage}`);
-        this.adjustLayout();
+        window.dispatchEvent(new Event("resize"));
     }
 
     private endResizing(): void {
