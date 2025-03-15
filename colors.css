@@ -8,6 +8,7 @@
   --color-base-c: #ffffff;
   --color-base-c-hover: #d3d3d3;
   --color-base: #201E1E;
+  --color-base-1: #252121;
   --color-base-2: #302E2E;
   --color-base-hover: #403E3E;
   --color-base-hover-2: #504E4E;
@@ -64,6 +65,7 @@
     --color-base-c: #201E1E;
     --color-base-c-hover: #302E2E;
     --color-base: #ffffff;
+    --color-base-1: #f8f8f8;
     --color-base-2: #efefef;
     --color-base-hover: #d3d3d3;
     --color-base-hover-2: #c3c3c3;
