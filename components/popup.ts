@@ -8,8 +8,8 @@ export class Popup extends Module<HTMLDivElement> {
     public container: Module<HTMLDivElement>
 
     public constructor(
-        innerClass: string,
-        containerClass: string
+        innerClass: string = "popupContent",
+        containerClass: string = "popupContainer",
     ) {
         super("div")
         this.setClass(innerClass)
@@ -31,11 +31,11 @@ export class Popup extends Module<HTMLDivElement> {
 
 export class ConfirmCancelPopup extends Popup {
     public constructor(
-        innerClass: string,
-        containerClass: string,
         question: string,
         confirmText: string,
-        cancelText: string
+        cancelText: string,
+        innerClass: string = "popupContent",
+        containerClass: string = "popupContainer",
     ) {
         super(innerClass, containerClass)
         this.add(new Module("p", question))
