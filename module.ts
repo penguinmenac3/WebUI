@@ -43,6 +43,10 @@ export class Module<T extends HTMLElement> {
     }
 
     public remove(module: Module<HTMLElement>): void {
+        let idx = this.children.indexOf(module)
+        if (idx >= 0) {
+            this.children = this.children.splice(0, idx).concat(this.children.splice(idx + 1))
+        }
         this.htmlElement.removeChild(module.htmlElement)
         module.parent = null
     }
