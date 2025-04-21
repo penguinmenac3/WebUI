@@ -3,6 +3,7 @@
 .buttonLarge,
 .buttonWide,
 .buttonNarrow {
+  cursor: pointer;
   display: inline-block;
   margin-top: 1em;
   padding: 0.5em;
@@ -49,6 +50,7 @@
 
 /** FormInput */
 .formInput {
+  cursor: pointer;
   width: -webkit-fill-available;
   display: block;
   padding: 0.5em;
@@ -59,6 +61,7 @@
 
 /** FormTextArea*/
 .formTextArea {
+  cursor: pointer;
   width: -webkit-fill-available;
   display: block;
   padding: 0.5em;

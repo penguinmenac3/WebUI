@@ -34,6 +34,7 @@
   }
   
   .popupExitBtn {
+    cursor: pointer;
     z-index: 101;
     position: absolute;
     display: inline-flex;
@@ -55,6 +56,7 @@
 
   .popupConfirmBtn,
   .popupCancelBtn {
+    cursor: pointer;
     width: 30%;
     display: inline-block;
     margin: 0.25em;
