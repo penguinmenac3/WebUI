@@ -7,6 +7,7 @@ export class Module<T extends HTMLElement> {
     public parent: Module<HTMLElement> | null = null
     public htmlElement: T
     private displayStyle: string = "none"
+    private children: Module<HTMLElement>[] = []
 
     protected constructor(element: string, text: string = "", cssClass: string = "") {
         this.htmlElement = document.createElement(element) as T
@@ -17,8 +18,18 @@ export class Module<T extends HTMLElement> {
     }
     
     public add(module: Module<HTMLElement>): void {
+        this.children.push(module)
         this.htmlElement.appendChild(module.htmlElement)
         module.parent = this
+    }
+
+    public getChildren(): Module<HTMLElement>[] {
+        return this.children
+    }
+
+    public removeChildren() {
+        this.htmlElement.innerHTML = ""
+        this.children = []
     }
 
     public addHtml(elementType: string, innerHTML: string, cssClass: string = ""): HTMLElement {
