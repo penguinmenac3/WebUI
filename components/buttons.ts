@@ -50,9 +50,6 @@ export class DropdownButton extends Module<HTMLSpanElement> {
         let H = window.innerHeight;
         let availableSpaceRight = W - cx;
         let availableSpaceBelow = H - cy;
-        console.log(menu.htmlElement.getBoundingClientRect())
-        console.log(availableSpaceBelow, menu.htmlElement.clientHeight)
-        console.log(availableSpaceRight, menu.htmlElement.clientWidth)
 
         // Adjust menu position based on available space
         if (availableSpaceBelow < menu.htmlElement.clientHeight) {
