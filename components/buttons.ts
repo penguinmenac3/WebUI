@@ -57,18 +57,18 @@ export class DropdownButton extends Module<HTMLSpanElement> {
         // Adjust menu position based on available space
         if (availableSpaceBelow < menu.htmlElement.clientHeight) {
             // If not enough space below, place it above the button
-            menu.htmlElement.style.top = `${cy - menu.htmlElement.clientHeight}px`;
+            menu.htmlElement.style.top = `${rect.top - menu.htmlElement.clientHeight}px`;
         } else {
             // Otherwise, place it below the button
-            menu.htmlElement.style.top = `${cy}px`;
+            menu.htmlElement.style.top = `${rect.bottom}px`;
         }
 
         if (availableSpaceRight < menu.htmlElement.clientWidth) {
             // If not enough space to the right, place it to the left of the button
-            menu.htmlElement.style.left = `${cx - menu.htmlElement.clientWidth}px`;
+            menu.htmlElement.style.left = `${rect.right - menu.htmlElement.clientWidth}px`;
         } else {
             // Otherwise, place it to the right of the button
-            menu.htmlElement.style.left = `${cx}px`;
+            menu.htmlElement.style.left = `${rect.left}px`;
         }
     }
 }

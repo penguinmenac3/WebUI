@@ -8,6 +8,8 @@
     list-style-type: none;
     padding: 0.1em;
     margin: 0;
+    max-height: 50%;
+    overflow-y: auto;
 }
 
 .dropdown-menu-button {
