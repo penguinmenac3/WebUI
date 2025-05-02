@@ -37,3 +37,17 @@
     background-color: var(--color-base-transparent-2);
     z-index: 1;
 }
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: var(--radius-round);
+}
+
+.action:hover {
+    background-color: var(--color-contrast-gray);
+}

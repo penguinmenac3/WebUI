@@ -173,6 +173,19 @@ export class FormRadioButtonGroup extends Module<HTMLDivElement> {
     }
 }
 
+export class FormVSpace extends Module<HTMLHeadingElement> {
+    constructor(height: string, cssClass: string = "formVSpace") {
+        super("div", "", cssClass)
+        this.htmlElement.style.height = height
+    }
+}
+
+export class FormHeading extends Module<HTMLHeadingElement> {
+    constructor(text: string, element: string = "h1", cssClass: string = "formHeading") {
+        super(element, text, cssClass)
+    }
+}
+
 export class FormLabel extends Module<HTMLLabelElement> {
     constructor(text: string, cssClass: string = "formLabel") {
         super("label", text, cssClass)

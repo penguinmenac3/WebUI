@@ -46,3 +46,7 @@
 .bad:hover {
   background-color: var(--color-bad-hover) !important;
 }
+
+.inline {
+  display: inline-block;
+}
