@@ -1,6 +1,6 @@
 import "./buttons.css"
 import { Module } from "../module";
-import { Button } from "./form";
+import { Button, FormInput } from "./form";
 
 
 export class ActionButton extends Module<HTMLSpanElement> {
@@ -20,7 +20,11 @@ export class ActionButton extends Module<HTMLSpanElement> {
 }
 
 export class DropdownButton extends Module<HTMLSpanElement> {
-    public constructor(innerHTML: string, protected selections: Map<string, CallableFunction> | null = null) {
+    public constructor(
+        innerHTML: string,
+        protected selections: Map<string, CallableFunction> | null = null,
+        protected filterable: boolean = false
+    ) {
         super("span", innerHTML, "dropdown");
         this.htmlElement.onclick = () => this.onAction();
     }
@@ -40,7 +44,7 @@ export class DropdownButton extends Module<HTMLSpanElement> {
     }
 
     public showMenu(selections: Map<string, CallableFunction>) {
-        let menu = new DropdownButtonMenu(selections);
+        let menu = new DropdownButtonMenu(selections, this.filterable);
         menu.htmlElement.style.display = "block";
         menu.htmlElement.style.position = "absolute";
         const rect = this.htmlElement.getBoundingClientRect();
@@ -74,14 +78,19 @@ export class DropdownButton extends Module<HTMLSpanElement> {
 class DropdownButtonMenu extends Module<HTMLDivElement> {
     private background: Module<HTMLDivElement>
 
-    constructor(actions: Map<string, CallableFunction>) {
+    constructor(actions: Map<string, CallableFunction>, filterable: boolean = false) {
         super("div", "", "dropdown-menu");
 
-        for (let [action, callback] of actions) {
-            let button = new Button(action, "dropdown-menu-button")
-            button.onClick = () => { if (callback()) { this.close() } }
-            this.add(button)
+        let actionsDiv = new Module<HTMLDivElement>("div")
+        if (filterable) {
+            let filterElement = new FormInput("filter", "model name", "text")
+            filterElement.onChange = (value: string) => {
+                this.updateOptions(actionsDiv, actions, value)
+            }
+            this.add(filterElement)
         }
+        this.add(actionsDiv)
+        this.updateOptions(actionsDiv, actions)
 
         this.background = new Module<HTMLDivElement>("div", "", "dropdown-menu-grayout")
         this.background.htmlElement.onclick = () => {
@@ -89,6 +98,22 @@ class DropdownButtonMenu extends Module<HTMLDivElement> {
         }
         document.body.appendChild(this.background.htmlElement)
         document.body.appendChild(this.htmlElement)
+    }
+
+    private updateOptions(
+        actionsDiv: Module<HTMLDivElement>,
+        actions: Map<string, CallableFunction>,
+        filter: string = "") {
+
+        actionsDiv.htmlElement.innerHTML = "";
+
+        for (let [action, callback] of actions) {
+            if (action.includes(filter)) {
+                let button = new Button(action, "dropdown-menu-button");
+                button.onClick = () => { if (callback()) { this.close(); } };
+                actionsDiv.add(button);
+            }
+        }
     }
 
     private close() {
