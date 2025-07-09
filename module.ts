@@ -7,7 +7,7 @@ export class Module<T extends HTMLElement> {
     public parent: Module<HTMLElement> | null = null
     public htmlElement: T
     private displayStyle: string = "none"
-    private children: Module<HTMLElement>[] = []
+    private _children: Module<HTMLElement>[] = []
 
     protected constructor(element: string, text: string = "", cssClass: string = "") {
         this.htmlElement = document.createElement(element) as T
@@ -18,18 +18,18 @@ export class Module<T extends HTMLElement> {
     }
     
     public add(module: Module<HTMLElement>): void {
-        this.children.push(module)
+        this._children.push(module)
         this.htmlElement.appendChild(module.htmlElement)
         module.parent = this
     }
 
     public getChildren(): Module<HTMLElement>[] {
-        return this.children
+        return this._children
     }
 
     public removeChildren() {
         this.htmlElement.innerHTML = ""
-        this.children = []
+        this._children = []
     }
 
     public addHtml(elementType: string, innerHTML: string, cssClass: string = ""): HTMLElement {
@@ -43,9 +43,9 @@ export class Module<T extends HTMLElement> {
     }
 
     public remove(module: Module<HTMLElement>): void {
-        let idx = this.children.indexOf(module)
+        let idx = this._children.indexOf(module)
         if (idx >= 0) {
-            this.children = this.children.splice(0, idx).concat(this.children.splice(idx + 1))
+            this._children = this._children.splice(0, idx).concat(this._children.splice(idx + 1))
         }
         this.htmlElement.removeChild(module.htmlElement)
         module.parent = null
